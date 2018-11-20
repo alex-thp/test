@@ -1,0 +1,16 @@
+#container-2{
+    position:relative;
+    height:200px;
+    width:700px;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#container-2 ul li{
+    list-style-type:none;
+    position:absolute;
+    top:0;
+    left:0;
+}

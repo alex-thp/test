@@ -22,14 +22,14 @@
   </ul>
 </div>
 
-<div class="container" id="container-2">
-  <div class="row">
+<div class="container">
+  <div class="row" id="container-2">
     <% @tasks.each do |task|  %>
-      <div class="card col-3">
+      <ul class="card col-3">
         <% unless task.image.nil? %>
-          <%= image_tag task.image, class: "rounded-circle" %>
+          <li><%= image_tag task.image, class: "rounded-circle" %></li>
         <% end %>
-      </div>
+      </ul>
     <% end %>
   </div>
 </div>
@@ -85,18 +85,62 @@ $(document).ready(function(){
       stat3 = 0;
      }
    });
+
+  var $carrousel = $('#carrousel'),
+  $img = $("#container-2 img"),
+  indexImg = $img.length -1,
+  i = 0,
+  $currentImg = $img.eq(i);
+
+  $img.css('display', 'none');
+  $currentImg.css('display', 'block');
+
+  $carrousel.append('<div class="controls"><span class="prev">Précedent</span><span class="next">Suivant</span></div>');
+
+  $('.next').click(function(){
+    i++;
+    if( i <= indexImg ){
+        $img.css('display', 'none');
+        $currentImg = $img.eq(i);
+        $currentImg.css('display', 'block');
+  }
+    else{
+        i = indexImg;
+    }
+  });
+
+  $('.prev').click(function(){
+    i--;
+    if( i >= 0 ){
+        $img.css('display', 'none');
+        $currentImg = $img.eq(i);
+        $currentImg.css('display', 'block');
+    }
+    else{
+        i = 0;
+    }
+});
+
+  function slideImg(){
+    setTimeout(function(){
+        if(i < indexImg){
+        i++;
+    }
+
+    else{
+        i = 0;
+    }
+    $img.css('display', 'none');
+    $currentImg = $img.eq(i);
+    $currentImg.css('display', 'block');
+    slideImg();
+    }, 5000);
+}
+slideImg();
+
+
 });
 
 
-//   $("#button-1").click(function(){
-//       if (statut == 0){
-//         $("#content-1").show();
-//         statut = 1;
-//       }
-//       else{
-//        $("#content-1").hide();
-//        statut = 0;
-//       }
-//   });
-//});
+
 </script>
