@@ -63,6 +63,53 @@
 
 
 <script>
+
+  $(document).ready(function(){
+  var stat1 = 0;
+  var stat2 = 0;
+  var stat3 = 0;
+
+  $('.card').hide();
+
+   $('.card-content').hide();
+   $("#button-1").click(function(){
+     if (stat1 == 0){
+       stat1 = 1;
+       stat2 = 0;
+       stat3 = 0;
+      $("#content-1").show();
+      $("#content-2").hide();
+      $("#content-3").hide();
+     }
+     else {
+      stat1= 0;
+     }
+   });
+    $("#button-2").click(function(){
+     if (stat2 == 0){
+       stat1 = 0;
+       stat2 = 1;
+       stat3 = 0;
+      $("#content-1").hide();
+      $("#content-2").show();
+      $("#content-3").hide();
+     }
+     else {
+      stat2= 0;
+     }
+   });
+     $("#button-3").click(function(){
+     if (stat3 == 0){
+       stat1 = 0;
+       stat2 = 0;
+       stat3 = 1;
+      $("#content-1").hide();
+      $("#content-2").hide();
+      $("#content-3").show();
+     }
+     else {
+      stat3 = 0;
+     }
   
 var slideIndex = 1;
 showSlides(slideIndex);
@@ -92,7 +139,7 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block"; 
   dots[slideIndex-1].className += " active";
 }
-
+});
 
 
 
