@@ -1,0 +1,102 @@
+<h1 class="text-center mb-4">Welcome to my todolist app</h1>
+<%= render 'layouts/task_form'  %>
+<div class="container" id="container-1">
+  <ul>
+  <% l = 0 %>
+  <% @categories.each do  |category|%>
+  <% l = l + 1 %>
+  <button class="bouton" id="button-<%=l%>"><%= category.title  %></button>
+  <div class="card" id="content-<%=l%>">
+    <ul>
+      <% category.tasks.each do |task|  %>
+      <li class="cate">
+        <%= task.title  %>
+        <% unless task.deadline.nil? %>
+          , to read: <%= task.deadline.strftime('%D')  %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  </ul>
+</div>
+
+<div class="container" id="container-2">
+  <div class="row">
+    <% @tasks.each do |task|  %>
+      <div class="card col-3">
+        <% unless task.image.nil? %>
+          <%= image_tag task.image, class: "rounded-circle" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script>
+
+
+$(document).ready(function(){
+  var stat1 = 0;
+  var stat2 = 0;
+  var stat3 = 0;
+
+  $('#content-1').hide();
+  $('#content-2').hide();
+  $('#content-3').hide();
+
+   $('.card-content').hide();
+   $("#button-1").click(function(){
+     if (stat1 == 0){
+       stat1 = 1;
+       stat2 = 0;
+       stat3 = 0;
+      $("#content-1").show();
+      $("#content-2").hide();
+      $("#content-3").hide();
+     }
+     else {
+      stat1= 0;
+     }
+   });
+    $("#button-2").click(function(){
+     if (stat2 == 0){
+       stat1 = 0;
+       stat2 = 1;
+       stat3 = 0;
+      $("#content-1").hide();
+      $("#content-2").show();
+      $("#content-3").hide();
+     }
+     else {
+      stat2= 0;
+     }
+   });
+     $("#button-3").click(function(){
+     if (stat3 == 0){
+       stat1 = 0;
+       stat2 = 0;
+       stat3 = 1;
+      $("#content-1").hide();
+      $("#content-2").hide();
+      $("#content-3").show();
+     }
+     else {
+      stat3 = 0;
+     }
+   });
+});
+
+
+//   $("#button-1").click(function(){
+//       if (statut == 0){
+//         $("#content-1").show();
+//         statut = 1;
+//       }
+//       else{
+//        $("#content-1").hide();
+//        statut = 0;
+//       }
+//   });
+//});
+</script>
